@@ -14,19 +14,24 @@ function App() {
 
     if (!word) return;
 
-    const normalizedWord = word.toLowerCase();
+    const normalize = (w) => {
+      return w.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    }
+
+    const normalizedWord = normalize(word);
 
     if (chain.length > 0) {
-      const lastWord = chain[chain.length - 1].normalize();
+      const lastWord = normalize(chain[chain.length - 1]);
       const lastLetter = lastWord.slice(-1);
 
       if (!normalizedWord.startsWith(lastLetter)) {
-        setError("La palabra debe empezar con la letra ");
+        setError(`La palabra debe empezar con la letra "${lastLetter.toUpperCase()}".`);
         return;
       }
     }
 
-    if (chain.includes(normalizedWord)) {
+    const isUsed = chain.some((w) => normalize(w) === normalizedWord);
+    if (isUsed) {
       setError("La palabra ya fue utilizada.");
       return;
     }
