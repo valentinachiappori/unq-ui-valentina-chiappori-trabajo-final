@@ -10,7 +10,7 @@ const Chain = ({ chain }) => {
           key={word}
           className={index === 0 ? "chain-word-last" : "chain-word"}
         >
-          {word}
+          {word} <span className="chain-word-points">+{word.length}</span>
         </span>
       ))}
     </div>
