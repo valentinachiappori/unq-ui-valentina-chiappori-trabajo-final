@@ -1,15 +1,36 @@
 import './App.css'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import WordInput from "./components/WordInput";
 import { wordExists } from "./api/wordService"
+import GameOver from "./components/GameOver";
 
 function App() {
   const [chain, setChain] = useState([]);
   const [score, setScore] = useState(0);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(15);
+  const [status, setStatus] = useState('playing');
+
+  useEffect(() => {
+    if (status !== 'playing' || loading || chain.length === 0) return;
+
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => {
+      if (prev <= 1) {
+        clearInterval(timer);
+        setStatus('finished');
+        return 0;
+      }
+      return prev - 1;
+    });
+  }, 1000);
+
+    return () => clearInterval(timer);
+  }, [timeLeft, loading, status, chain]);
 
   const handleSubmitWord = async (word) => {
+    if (status === 'finished') return;
     setError("");
 
     if (!word) return;
@@ -44,8 +65,9 @@ function App() {
         return;
       }
       setChain((prev) => [...prev, word]);
-      setScore((prev) => prev + normalizedWord.length);
-    } catch (error) {
+      setScore((prev) => prev + word.length);
+      setTimeLeft(15);
+    } catch {
         setError("No se pudo validar la palabra, intentá de nuevo");
     } finally {
       setLoading(false); 
@@ -55,8 +77,15 @@ function App() {
   return (
     <div className="app">
       <h1>Encadenadas</h1>
-      <WordInput onSubmitWord={handleSubmitWord} error={error} loading={loading} />
-      <p>Puntaje: {score}</p>
+      {status === 'finished' ? (
+        <GameOver chainLength={chain.length} score={score} />
+      ) : (
+        <>
+          <p>Tiempo restante: {timeLeft}s</p>
+          <WordInput onSubmitWord={handleSubmitWord} error={error} loading={loading} />
+          <p>Puntaje: {score}</p>
+        </>
+      )}
     </div>
   )
 }
