@@ -1,0 +1,24 @@
+.chain {
+  height: 150px;
+  overflow-y: auto;
+  border: 0.5px solid var(--borde);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+  scroll-behavior: smooth;
+}
+
+.chain-word {
+  font-size: 18px;
+  color: var(--texto-secundario);
+}
+
+.chain-word-last {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--violeta-oscuro);
+}
