@@ -3,6 +3,11 @@ import { useState, useEffect } from 'react';
 import WordInput from "./components/WordInput";
 import { wordExists } from "./api/wordService"
 import GameOver from "./components/GameOver";
+import Chain from "./components/Chain";
+
+const normalize = (w) => {
+      return w.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
 
 function App() {
   const [chain, setChain] = useState([]);
@@ -29,15 +34,13 @@ function App() {
     return () => clearInterval(timer);
   }, [timeLeft, loading, status, chain]);
 
+  const nextLetterHint = chain.length > 0 ? normalize(chain[chain.length - 1]).slice(-1).toUpperCase() : null;
+  
   const handleSubmitWord = async (word) => {
     if (status === 'finished') return;
     setError("");
 
     if (!word) return;
-
-    const normalize = (w) => {
-      return w.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-    }
 
     const normalizedWord = normalize(word);
 
@@ -76,18 +79,41 @@ function App() {
 
   return (
     <div className="app">
-      <h1>Encadenadas</h1>
       {status === 'finished' ? (
-        <GameOver chainLength={chain.length} score={score} />
-      ) : (
         <>
-          <p>Tiempo restante: {timeLeft}s</p>
-          <WordInput onSubmitWord={handleSubmitWord} error={error} loading={loading} />
-          <p>Puntaje: {score}</p>
+          <GameOver chainLength={chain.length} score={score} />
         </>
+      ) : chain.length === 0 ? (
+        <div className="start-card">
+          <h1 className="app-title">encadenadas</h1>
+          <WordInput
+            onSubmitWord={handleSubmitWord}
+            error={error}
+            loading={loading}
+            hint={nextLetterHint}
+          />
+          <p className="start-instructions">¿Como se juega?</p>
+        </div>
+      ) : (
+        <div className="playing-card">
+          <div className="app-header">
+            <h1 className="app-title app-title-playing">encadenadas</h1>
+            <span className="timer">{timeLeft}s</span>
+          </div>
+          <Chain chain={chain} />
+          <WordInput
+            onSubmitWord={handleSubmitWord}
+            error={error}
+            loading={loading}
+            hint={nextLetterHint}
+          />
+          <p className="score">
+            Puntaje: <strong>{score}</strong>
+          </p>
+        </div>
       )}
     </div>
-  )
+  );
 }
 
 export default App

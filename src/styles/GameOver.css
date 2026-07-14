@@ -1,0 +1,55 @@
+.game-over-container {
+  display: flex;
+  justify-content: center;
+  padding-top: 24px;
+}
+
+.game-over-card {
+  background-color: #FFFFFF;
+  border: 2px solid var(--violeta-oscuro);
+  border-radius: 16px;
+  padding: 40px 32px;
+  text-align: center;
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  box-shadow: 6px 6px 0px var(--violeta); 
+}
+
+.game-over-card h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--texto);
+  margin: 0;
+}
+
+.score-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.score-label {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--violeta-oscuro);
+  margin: 0;
+}
+
+.score-number {
+  font-size: 72px;
+  font-weight: 900;
+  color: #A29BFE; 
+  line-height: 1;
+  text-shadow: 2px 2px 0px var(--violeta-oscuro);
+}
+
+.chain-stats {
+  font-size: 14px;
+  color: var(--texto-secundario);
+  margin: 0;
+  font-weight: 500;
+}

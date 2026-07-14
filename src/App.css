@@ -1,5 +1,84 @@
 .app {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 48px 32px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+   gap: 24px;
+}
+
+.app-title {
   text-align: center;
-  padding: 40px 20px;
-  font-family: system-ui, sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--violeta-oscuro);
+}
+
+.app-title-playing {
+  font-size: 24px;
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.timer {
+  background-color: var(--amarillo-oscuro);
+  color: #FFF;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+
+.score {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--texto-secundario);
+  text-align: center;
+}
+
+.score strong {
+  color: var(--violeta-oscuro);
+  font-size: 20px;
+}
+
+.start-card {
+  background-color: #FFFFFF;
+  border: 2px solid var(--violeta-oscuro);
+  border-radius: 16px;
+  padding: 40px 32px;
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  box-shadow: 6px 6px 0px var(--violeta); 
+}
+
+.start-instructions {
+  color: var(--texto-secundario);
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.playing-card {
+  background-color: #FFFFFF;
+  border: 2px solid var(--violeta-oscuro);
+  border-radius: 16px;
+  padding: 32px 24px;
+  width: 100%;
+  max-width: 450px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 6px 6px 0px var(--violeta); 
 }

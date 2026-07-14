@@ -1,5 +1,26 @@
+:root {
+  --violeta: #7F77DD;
+  --violeta-oscuro: #534AB7;
+  --violeta-claro: #EEEDFE;
+  --amarillito: #FAC775;
+  --amarillo-oscuro: #BA7517;
+  --error: #BA7517;
+  --texto: #2C2C2A;
+  --texto-secundario: #5F5E5A;
+  --bg: #FDFCFA;
+  --borde: #CECBF6;
+}
+
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  background-color: var(--bg);
+  background-image: url('/patron5.png');
+  background-repeat: repeat;
+  color: var(--texto);
 }
