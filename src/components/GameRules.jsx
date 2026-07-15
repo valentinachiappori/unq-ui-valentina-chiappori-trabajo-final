@@ -11,10 +11,10 @@ const GameRules = ({ onClose }) => {
         última letra de la palabra anterior.
       </p>
       <p>
-        Tenés 15 segundos por turno, que se reinician cada vez que acertas.
+        Tenés 15 segundos por turno, que se reinician cada vez que acertás.
         Cada letra vale 1 punto.
       </p>
-      <h2>Exitos!</h2>
+      <h2>¡Éxitos!</h2>
     </Modal>
   );
 };

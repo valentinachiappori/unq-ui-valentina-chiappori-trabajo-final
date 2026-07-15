@@ -1,7 +1,7 @@
 import Modal from "./Modal";
 import "../styles/Leaderboard.css";
 
-const LeaderboardModal = ({ onClose, scores }) => {
+const Leaderboard = ({ onClose, scores }) => {
   return (
     <Modal onClose={onClose}>
       <h2>TOP 10</h2>
@@ -22,4 +22,4 @@ const LeaderboardModal = ({ onClose, scores }) => {
   );
 };
 
-export default LeaderboardModal;
+export default Leaderboard;

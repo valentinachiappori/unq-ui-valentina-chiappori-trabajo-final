@@ -101,14 +101,12 @@ function App() {
   return (
     <div className="app">
       {status === 'finished' ? (
-        <>
-          <GameOver 
-            chainLength={chain.length} 
-            score={score} 
-            onRestart={handleRestart} 
-            onShowLeaderboard={openLeaderboard}
-          />
-        </>
+        <GameOver 
+          chainLength={chain.length} 
+          score={score} 
+          onRestart={handleRestart} 
+          onShowLeaderboard={openLeaderboard}
+        />
       ) : chain.length === 0 ? (
         <div className="start-card">
           <h1 className="app-title">encadenadas</h1>
