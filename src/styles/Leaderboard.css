@@ -1,0 +1,38 @@
+.leaderboard-empty {
+  color: var(--texto-secundario);
+  font-size: 14px;
+  text-align: center;
+}
+
+.leaderboard-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.leaderboard-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--borde);
+}
+
+.leaderboard-position {
+  font-weight: 700;
+  color: var(--violeta);
+  width: 20px;
+}
+
+.leaderboard-name {
+  flex: 1;
+  color: var(--texto);
+  font-weight: 500;
+}
+
+.leaderboard-score {
+  font-weight: 700;
+  color: var(--amarillo-oscuro);
+}

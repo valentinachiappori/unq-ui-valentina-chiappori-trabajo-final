@@ -6,6 +6,8 @@ import GameOver from "./components/GameOver";
 import Chain from "./components/Chain";
 import GameRules from './components/GameRules';
 import Button from './components/Button';
+import Leaderboard from './components/Leaderboard';
+import { leaderboardService } from './api/leaderboardService';
 
 const normalize = (w) => {
       return w.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -18,7 +20,8 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [timeLeft, setTimeLeft] = useState(15);
   const [status, setStatus] = useState('playing');
-  const [showRules, setShowRules] = useState(false);
+  const [activeModal, setActiveModal] = useState(null);
+  const [scores, setScores] = useState([]);
 
   useEffect(() => {
     if (status !== 'playing' || loading || chain.length === 0) return;
@@ -88,11 +91,23 @@ function App() {
     setStatus('playing');
   };
 
+  const closeModal = () => setActiveModal(null);
+
+  const openLeaderboard = () => {
+    setScores(leaderboardService.getScores());
+    setActiveModal('leaderboard');
+  };
+
   return (
     <div className="app">
       {status === 'finished' ? (
         <>
-          <GameOver chainLength={chain.length} score={score} onRestart={handleRestart} />
+          <GameOver 
+            chainLength={chain.length} 
+            score={score} 
+            onRestart={handleRestart} 
+            onShowLeaderboard={openLeaderboard}
+          />
         </>
       ) : chain.length === 0 ? (
         <div className="start-card">
@@ -103,8 +118,11 @@ function App() {
             loading={loading}
             hint={nextLetterHint}
           />
-          <Button className="start-instructions" onClick={() => setShowRules(true)}  disabled={loading}>
+          <Button className="start-instructions" onClick={() => setActiveModal('rules')}  disabled={loading}>
             ¿Cómo se juega?
+          </Button>
+          <Button className="show-leaderboard-button" onClick={openLeaderboard} disabled={loading}>
+            Ver mejores puntajes
           </Button>
         </div>
       ) : (
@@ -125,7 +143,10 @@ function App() {
           </p>
         </div>
       )}
-      {showRules && <GameRules onClose={() => setShowRules(false)} />}
+      {activeModal === 'rules' && <GameRules onClose={closeModal} />}
+      {activeModal === 'leaderboard' && (
+        <Leaderboard onClose={closeModal} scores={scores} />
+      )}
     </div>
   );
 }
