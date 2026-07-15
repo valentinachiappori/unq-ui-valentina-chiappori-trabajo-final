@@ -1,5 +1,6 @@
 import "../styles/WordInput.css";
 import { useState } from 'react';
+import Button from './Button';
 
 const WordInput = ({ onSubmitWord, error, loading, hint }) => {
   const [word, setWord] = useState('');
@@ -25,9 +26,9 @@ const WordInput = ({ onSubmitWord, error, loading, hint }) => {
           placeholder={placeholder}
           disabled={loading}
         />
-        <button type="submit" className="word-input-button" disabled={loading}>
+        <Button type="submit" className="word-input-button" disabled={loading}>
           {loading ? '...' : <i className="bi bi-check-lg" aria-label="Enviar" />}
-        </button>
+        </Button>
       </div>
       {error && <p className="word-input-error">{error}</p>}
     </form>

@@ -1,12 +1,13 @@
 import "../styles/GameRules.css";
+import Button from './Button';
 
 const GameRules = ({ onClose }) => {
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-card" onClick={(e) => e.stopPropagation()}>
-        <button className="modal-close" onClick={onClose} aria-label="Cerrar">
+        <Button className="modal-close" onClick={onClose} aria-label="Cerrar">
           <i className="bi bi-x-lg" />
-        </button>
+        </Button>
         <h2>¿Cómo se juega?</h2>
         <p>
           Ingresá una palabra para empezar. A partir de la segunda, cada palabra debe

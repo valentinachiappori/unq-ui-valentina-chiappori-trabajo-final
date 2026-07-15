@@ -1,0 +1,9 @@
+.app-btn {
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+}
+
+.app-btn:disabled {
+  cursor: not-allowed;
+}

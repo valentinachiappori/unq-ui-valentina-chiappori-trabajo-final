@@ -5,6 +5,7 @@ import { wordExists } from "./api/wordService"
 import GameOver from "./components/GameOver";
 import Chain from "./components/Chain";
 import GameRules from './components/GameRules';
+import Button from './components/Button';
 
 const normalize = (w) => {
       return w.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -94,9 +95,9 @@ function App() {
             loading={loading}
             hint={nextLetterHint}
           />
-          <button className="start-instructions" onClick={() => setShowRules(true)}  disabled={loading}>
+          <Button className="start-instructions" onClick={() => setShowRules(true)}  disabled={loading}>
             ¿Cómo se juega?
-          </button>
+          </Button>
         </div>
       ) : (
         <div className="playing-card">
