@@ -4,6 +4,7 @@ import WordInput from "./components/WordInput";
 import { wordExists } from "./api/wordService"
 import GameOver from "./components/GameOver";
 import Chain from "./components/Chain";
+import GameRules from './components/GameRules';
 
 const normalize = (w) => {
       return w.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -16,6 +17,7 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [timeLeft, setTimeLeft] = useState(15);
   const [status, setStatus] = useState('playing');
+  const [showRules, setShowRules] = useState(false);
 
   useEffect(() => {
     if (status !== 'playing' || loading || chain.length === 0) return;
@@ -92,7 +94,9 @@ function App() {
             loading={loading}
             hint={nextLetterHint}
           />
-          <p className="start-instructions">¿Como se juega?</p>
+          <button className="start-instructions" onClick={() => setShowRules(true)}  disabled={loading}>
+            ¿Cómo se juega?
+          </button>
         </div>
       ) : (
         <div className="playing-card">
@@ -112,6 +116,7 @@ function App() {
           </p>
         </div>
       )}
+      {showRules && <GameRules onClose={() => setShowRules(false)} />}
     </div>
   );
 }
