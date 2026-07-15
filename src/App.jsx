@@ -79,12 +79,20 @@ function App() {
       setLoading(false); 
     }
   };
+  
+  const handleRestart = () => {
+    setChain([]);
+    setScore(0);
+    setError('');
+    setTimeLeft(15);
+    setStatus('playing');
+  };
 
   return (
     <div className="app">
       {status === 'finished' ? (
         <>
-          <GameOver chainLength={chain.length} score={score} />
+          <GameOver chainLength={chain.length} score={score} onRestart={handleRestart} />
         </>
       ) : chain.length === 0 ? (
         <div className="start-card">

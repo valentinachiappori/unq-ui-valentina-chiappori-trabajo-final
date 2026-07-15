@@ -53,3 +53,16 @@
   margin: 0;
   font-weight: 500;
 }
+
+.restart-button {
+  background-color: var(--violeta);
+  color: #FFF;
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.restart-button:hover {
+  background-color: var(--violeta-oscuro);
+}
