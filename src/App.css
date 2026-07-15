@@ -87,3 +87,84 @@
   gap: 20px;
   box-shadow: 6px 6px 0px var(--violeta); 
 }
+
+@media (max-width: 480px) {
+  .app {
+    padding: 24px 16px;
+    gap: 16px;
+  }
+
+  .app-title {
+    font-size: 26px;
+  }
+
+  .app-title-playing {
+    font-size: 20px;
+  }
+
+  .start-card,
+  .playing-card {
+    padding: 24px 16px;
+    gap: 16px;
+    box-shadow: 4px 4px 0px var(--violeta);
+  }
+
+  .game-over-card {
+    padding: 24px 16px;
+    gap: 20px;
+    max-width: 280px;
+  }
+
+  .score-number {
+    font-size: 48px;
+  }
+
+  .score-label {
+    font-size: 16px;
+  }
+
+  .chain {
+    height: 120px;
+  }
+
+  .chain-word-last {
+    font-size: 22px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+  .app {
+    max-width: 600px;
+  }
+
+  .start-card,
+  .playing-card {
+    max-width: 500px;
+    padding: 40px 36px;
+  }
+
+  .app-title {
+    font-size: 34px;
+  }
+
+  .game-over-card {
+    max-width: 360px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .app {
+    max-width: 640px;
+    padding: 64px 32px;
+  }
+
+  .app-title {
+    font-size: 38px;
+  }
+
+  .start-card,
+  .playing-card {
+    max-width: 480px;
+    padding: 48px 40px;
+  }
+}
